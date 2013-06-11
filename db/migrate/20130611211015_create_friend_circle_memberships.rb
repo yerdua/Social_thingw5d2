@@ -6,5 +6,7 @@ class CreateFriendCircleMemberships < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :friend_circle_memberships, :circle_id
   end
 end

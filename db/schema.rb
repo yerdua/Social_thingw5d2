@@ -11,11 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611203748) do
+ActiveRecord::Schema.define(:version => 20130611211015) do
+
+  create_table "friend_circle_memberships", :force => true do |t|
+    t.integer  "circle_id",  :null => false
+    t.integer  "member_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "friend_circle_memberships", ["circle_id"], :name => "index_friend_circle_memberships_on_circle_id"
+
+  create_table "friend_circles", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "owner_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "friend_circles", ["name"], :name => "index_friend_circles_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "username",        :null => false
-    t.string   "password", :null => false
+    t.string   "password_digest", :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "session_token"

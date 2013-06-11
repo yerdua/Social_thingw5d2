@@ -1,0 +1,27 @@
+<% action_url = (method == :post) ? friend_circles_url : friend_circle_url(@friend_circle) %>
+
+<form action="<%= friend_circles_url %>" method="post" accept-charset="utf-8">
+	<input type="hidden"
+				 name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+
+	<label for="friend_circle_name">Name</label>
+	<input type="text"
+				 name="friend_circle[name]"
+				 value="<%= @friend_circle.name %>"
+				 id="friend_circle_name">
+
+	<ul>
+		<% User.all.each do |user| %>
+			<% next if user == current_user %>
+			<li>
+				<input type="checkbox",
+					name="friend_circle[member_ids][]"
+					value="<%= user.id %>"
+					id="friend_<%= user.id %>">
+				<label for="friend_<%= user.id %>"><%= user.username %> </label>
+			</li>
+		<% end %>
+	</ul>
+	<p><input type="submit" value="<%= button_value %>"></p>
+</form>

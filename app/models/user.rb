@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :password
 
+  has_many :friend_circles, foreign_key: :owner_id
+  has_many :circle_memberships,
+           foreign_key: :member_id,
+           class_name: 'FriendCircleMembership'
+
   def password=(password)
     # fancy digest code
     self.password_digest = BCrypt::Password.create(password) #setup Bcrypt code here
