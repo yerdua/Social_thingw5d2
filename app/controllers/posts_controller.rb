@@ -13,8 +13,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.author_id = current_user.id
+    @circles = current_user.friend_circles
     if @post.save
-      redirect_to @post
+      redirect_to feed_url
     else
       render :new
     end
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update_attributes(params[:post])
     if @post.save
-      redirect_to @post
+      redirect_to feed_url
     else
       render :edit
     end

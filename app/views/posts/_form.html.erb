@@ -19,11 +19,24 @@
 
 	<p>
 	 	<label for="post_body">Body</label>
-	 	<textarea name="post[body]" id="post_body"> <%= @post.body %> </textarea>
+	 	<textarea name="post[body]" id="post_body"><%= @post.body %></textarea>
 	</p>
+  
+  <p>
+    Links!
+    <% 3.times do |i| %>
+      <label for="link_<%= i %>_url">link_<%= i %></label>
+      <input type="text"
+             name="post[links_attributes][<%= i %>][url]"
+             value="<%= @post.links[i].url if @post.links[i] %>" 
+             id="link_<%= i %>_url">
+    <% end %>
+    
+  </p>
 
 
 	<p>
+    Share with:
 		<ul>
 			<% @circles.each do |circle|%>
 				<li>

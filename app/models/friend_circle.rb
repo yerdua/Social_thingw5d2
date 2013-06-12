@@ -3,7 +3,7 @@ class FriendCircle < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User'
   has_many :memberships,
-           class_name: 'FriendCircleMemberships',
+           class_name: 'FriendCircleMembership',
            foreign_key: :circle_id,
            dependent: :destroy
 

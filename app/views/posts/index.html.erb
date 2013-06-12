@@ -1,10 +1,19 @@
 <h1>Posts</h1>
 
 <% @circles.each do |circle| %>
-	<h3><%= circle.name %></h3>
-	<ul>
+  <div>
+	  <h3>Posts from: <%= circle.name %></h3>
 		<% circle.posts.each do |post| %>
-			<li><%= link_to post.title, post_url(post) %></li>
+			<div>
+        <h4 class="post_title"><%= link_to post.title, post_url(post) %></h4>
+        <span class="author"><%= post.author.username %>
+        <div><%= post.body %></div>
+        <ul>
+          <% post.links.each do |link| %>
+            <li><%= link_to link.url %></li>
+          <% end %>
+        </ul>
+      </div>
 		<% end %>
-	</ul>
+  </div>
 <% end %>
