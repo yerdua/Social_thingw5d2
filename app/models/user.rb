@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :circle_memberships,
            foreign_key: :member_id,
            class_name: 'FriendCircleMembership'
-  has_many :friend_circles, through: :circle_memberships
+  has_many :friend_circles, through: :circle_memberships, source: :circle
   has_many :posts, foreign_key: :author_id
 
   def password=(password)

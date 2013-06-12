@@ -28,11 +28,11 @@
 			<% @circles.each do |circle|%>
 				<li>
 					<input type="checkbox",
-								 name="post[share_ids][]"
+								 name="post[friend_circle_ids][]"
 								 value="<%= circle.id %>"
-								 id="post_share_ids_<% circle.id %>"
-								 <%= 'checked' if @post.share_ids.include?(circle.id) %>>
-					<label for="post_share_ids_<% circle.id %>"><%= circle.name %></label>
+								 id="post_friend_circle_ids_<% circle.id %>"
+								 <%= 'checked' if @post.friend_circle_ids.include?(circle.id) %>>
+					<label for="post_friend_circle_ids_<% circle.id %>"><%= circle.name %></label>
 				</li>
 			<% end %>
 		</ul>
