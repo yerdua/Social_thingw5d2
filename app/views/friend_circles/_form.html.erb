@@ -1,6 +1,11 @@
 <% action_url = (method == :post) ? friend_circles_url : friend_circle_url(@friend_circle) %>
 
-<form action="<%= friend_circles_url %>" method="post" accept-charset="utf-8">
+<form action="<%= action_url %>" method="post" accept-charset="utf-8">
+	<input
+	    type="hidden"
+	    name="_method"
+	    value="<%= method %>">
+
 	<input type="hidden"
 				 name="authenticity_token"
 				 value="<%= form_authenticity_token %>">

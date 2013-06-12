@@ -1,0 +1,45 @@
+<% action_url = (method == :post) ? posts_url : post_url(@post) %>
+
+<form action="<%= action_url %>" method="post" accept-charset="utf-8">
+	<input
+	    type="hidden"
+	    name="_method"
+	    value="<%= method %>">
+
+	<input type="hidden"
+				 name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+	<p>
+	<label for="post_title">Title</label>
+	<input type="text"
+				 name="post[title]"
+				 value="<%= @post.title %>"
+				 id="post_title">
+	</p>
+
+	<p>
+	 	<label for="post_body">Body</label>
+	 	<textarea name="post[body]" id="post_body"> <%= @post.body %> </textarea>
+	</p>
+
+
+	<p>
+		<ul>
+			<% @circles.each do |circle|%>
+				<li>
+					<input type="checkbox",
+								 name="post[share_ids][]"
+								 value="<%= circle.id %>"
+								 id="post_share_ids_<% circle.id %>"
+								 <%= 'checked' if @post.share_ids.include?(circle.id) %>>
+					<label for="post_share_ids_<% circle.id %>"><%= circle.name %></label>
+				</li>
+			<% end %>
+		</ul>
+	</p>
+
+		<ul>
+
+
+	<p><input type="submit" value="<%= button_value %>"></p>
+</form>

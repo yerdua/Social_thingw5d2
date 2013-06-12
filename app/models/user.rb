@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :password
 
-  has_many :friend_circles, foreign_key: :owner_id
+
   has_many :circle_memberships,
            foreign_key: :member_id,
            class_name: 'FriendCircleMembership'
+  has_many :friend_circles, through: :circle_memberships
+  has_many :posts, foreign_key: :author_id
 
   def password=(password)
     # fancy digest code

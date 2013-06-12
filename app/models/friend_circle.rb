@@ -8,6 +8,7 @@ class FriendCircle < ActiveRecord::Base
            dependent: :destroy
 
   has_many :members, through: :memberships
-
+  has_many :post_shares
+  has_many :posts, through: :post_shares
 
 end

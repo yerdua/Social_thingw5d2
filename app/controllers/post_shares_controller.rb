@@ -1,0 +1,2 @@
+class PostSharesController < ApplicationController
+end
